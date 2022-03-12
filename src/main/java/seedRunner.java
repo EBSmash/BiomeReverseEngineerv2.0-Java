@@ -14,7 +14,8 @@ import kaptainwutax.mcutils.version.MCVersion;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+//Example i found and im using as reference 
+//DOES NOT HAVE ANYTHING TO DO WITH THE ACTUAL PROJECT
 public class seedRunner {
     public static void main(String[] args) {
         long seed = -4172144997902289642L;
