@@ -10,53 +10,53 @@ import kaptainwutax.terrainutils.TerrainGenerator;
 
 public class DragonFinder {
     public static void main(String[] args) {
+        //2b2t seed
         long worldSeed = -4172144997902289642L;
+        //version 1.12.2 in the overworld
         MCVersion version = MCVersion.v1_12_2;
         Dimension dimension = Dimension.OVERWORLD;
+        //make the OBS
         OverworldBiomeSource ovw = new OverworldBiomeSource(version, worldSeed);
+        //initiate vars:
+        //position on spiral
         long spiralX = 0, spiralZ = 0;
+        //origin aka starting point
         long centerx = 0,centerz = 0;
-        long steps;
-        boolean isSkipping=false;
-        long XMax = 30000000, YMax = 30000000;
-        long t = Math.max(XMax, YMax);
+        //how much to jump every time it checks
+        long steps = 128;
+        //unused right now
+//      long XMax = 30000000, YMax = 30000000;
+//      long t = Math.max(XMax, YMax);
 
 
-
-
-        steps = 128;
-        //isSkipping = (skip.getValue() != 0);
-        //
-    
+        //"infinite" loop
         for (long i = 0; i < 1000000000; i++) {
-                long x = spiralX + centerx; //add to move center
-                long z = spiralZ + centerz; // ^
-                String biomeAt = ovw.getBiome((int) x,0 , (int) z).getName();
-                if(biomeAt == "desert" || biomeAt== "desert_hills"){
-                    String biomeAt2 = ovw.getBiome((int) x ,0 , (int) z + 112).getName();
-                    if (biomeAt2 == "river"){
+        long x = spiralX + centerx; //add to move center
+        long z = spiralZ + centerz; // ^
+        String biomeAt = ovw.getBiome((int) x,0 , (int) z).getName();
+        if(biomeAt == "desert" || biomeAt== "desert_hills"){
+            String biomeAt2 = ovw.getBiome((int) x ,0 , (int) z + 112).getName();
+            if (biomeAt2 == "river"){
 //                        System.out.println("Match level 2 found!");
-                        String biomeAt3 = ovw.getBiome((int) x-370,0 , (int)z + 112).getName();
-                        if (biomeAt3=="deep_ocean" || biomeAt3 == "ocean"){
+                String biomeAt3 = ovw.getBiome((int) x-370,0 , (int)z + 112).getName();
+                if (biomeAt3=="deep_ocean" || biomeAt3 == "ocean"){
 //                            System.out.println("MATCH LEVEL 3 FOUND!!!");
-                            String biomeAt4 = ovw.getBiome((int) x-370,0 , (int) z + 225).getName();
-                            if (biomeAt4=="badlands"||biomeAt4=="eroded_badlands"){
-                                Biome biomeAt5 = ovw.getBiome((int)x+124,0,(int)z+241)
-                                System.out.println("FULL MATCH FOUND!!!");
-                                System.out.println(x + " " + z);
+                    String biomeAt4 = ovw.getBiome((int) x-370,0 , (int) z + 225).getName();
+                    if (biomeAt4=="badlands"||biomeAt4=="eroded_badlands"){
+                        Biome biomeAt5 = ovw.getBiome((int)x+124,0,(int)z+241)
+                        System.out.println("FULL MATCH FOUND!!!");
+                        System.out.println(x + " " + z);
 //                                return;
-                            }
-                        }
-
                     }
-
                 }
-                if (Math.abs(spiralX) <= Math.abs(spiralZ) && (spiralX != spiralZ || spiralX >= 0))
-                    spiralX += ((spiralZ >= 0) ? steps : -steps);
-                else
-                    spiralZ += ((spiralX >= 0) ? -steps : steps);
             }
+            //do next block of spiral
+            if (Math.abs(spiralX) <= Math.abs(spiralZ) && (spiralX != spiralZ || spiralX >= 0))
+                spiralX += ((spiralZ >= 0) ? steps : -steps);
+            else
+                spiralZ += ((spiralX >= 0) ? -steps : steps);
         }
     }
+}
 
 
