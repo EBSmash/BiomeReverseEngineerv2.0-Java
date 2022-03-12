@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://jitpack.io"
+    }
+}
+dependencies {
+    implementation 'com.github.KaptainWutax:SEED:master-SNAPSHOT'
+    implementation 'org.jetbrains:annotations:20.1.0'
+}
+
+test {
+    useJUnitPlatform()
+}
