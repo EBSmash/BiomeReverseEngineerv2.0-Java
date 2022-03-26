@@ -7,11 +7,15 @@ import kaptainwutax.mcutils.util.pos.BPos;
 import kaptainwutax.mcutils.util.pos.CPos;
 import kaptainwutax.mcutils.version.MCVersion;
 import kaptainwutax.terrainutils.TerrainGenerator;
+import java.util.Scanner;
 
 public class DragonFinder {
     public static void main(String[] args) {
+        System.out.println("Please enter the world seed you wish to search (1.12.2)");
+        Scanner sc = new Scanner(System.in);
+        int inputSeed = sc.nextInt();
         //2b2t seed
-        long worldSeed = -4172144997902289642L;
+        long worldSeed = (long) inputSeed;
         //version 1.12.2 in the overworld
         MCVersion version = MCVersion.v1_12_2;
         Dimension dimension = Dimension.OVERWORLD;
